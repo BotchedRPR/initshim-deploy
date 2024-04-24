@@ -43,4 +43,10 @@ sudo mount --make-rslave st2/rootfs/dev
 # 3. Let's go!
 echo "Working in alpine chroot..."
 echo "If you do not get an output file please look at log.txt. Thanks bye"
-sudo chroot st2/rootfs /run.sh
+sudo chroot st2/rootfs /run.sh > log.txt
+
+if sudo cp st2/rootfs/initshim/AIK-Linux-mirror/unsigned-new.img injected-recovery.img; then
+    echo "Injecting done! Have fun!"
+else
+    echo "FAIL, Look at log.txt"
+fi
