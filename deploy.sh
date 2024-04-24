@@ -16,7 +16,7 @@ if ! test -f $1; then
 fi
 
 # 0.5. Clean up.
-sudo umount -l st2/rootfs/proc
+sudo umount -R -l st2/rootfs/proc
 sudo umount -R -l st2/rootfs/sys
 sudo umount -R -l st2/rootfs/dev
 
