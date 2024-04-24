@@ -10,7 +10,9 @@ cd    build
 meson setup --prefix=/libdrm-2.4.120/build/out --buildtype release -Dvalgrind=disabled -Ddefault_library=static ..
 ninja
 ninja install
+
 # build initshim here
+
 set -e
 cd /
 rm -rfv initshim
@@ -19,11 +21,5 @@ cd initshim
 git clone https://github.com/SebaUbuntu/AIK-Linux-mirror
 cd AIK-Linux-mirror
 mv /in.img in.img
-echo "$PWD"
-echo "$PWD"
-echo "$PWD"
-echo "$PWD"
-echo "$PWD"
-ls
 ./unpackimg.sh in.img
 ./repackimg.sh
