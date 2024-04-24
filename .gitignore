@@ -3,3 +3,6 @@ st2/rootfs/*
 
 # My test images
 *.img
+
+# Logs
+log.txt
