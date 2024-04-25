@@ -27,6 +27,7 @@ wget "http://dl-cdn.alpinelinux.org/alpine/latest-stable/releases/aarch64/$FILE"
 tar -xf rootfs.tar.gz -C st2/rootfs/
 cp $1 st2/rootfs/in.img
 rm rootfs.tar.gz
+rm st2/rootfs/run.sh
 cp st2/deploy-stage2.sh st2/rootfs/run.sh
 cp /etc/resolv.conf st2/rootfs/etc/resolv.conf
 chmod +x st2/rootfs/run.sh
