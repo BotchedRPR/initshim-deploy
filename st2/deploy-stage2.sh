@@ -13,19 +13,7 @@ ninja
 ninja install
 
 # Initshim
-cd /
-rm -rfv build
-mkdir build
-cd build
-if [ $# -eq 0 ]
-then 
-    git clone --depth 1 https://github.com/BotchedRPR/initshim
-fi
-if [ ! -z "$1" ]
-then
-    git clone --depth 1 --branch $1 https://github.com/BotchedRPR/initshim
-fi
-cd initshim
+cd /build/initshim
 cmake .
 C_INCLUDE_PATH="/usr/local/include/libdrm" make
 
