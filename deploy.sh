@@ -10,6 +10,20 @@ then
     echo "TODO: Add a tag parameter, make it work on local repos, etc"
     exit 2
 fi
+
+if [ "$3" = "rebuild_only_is" ]; then
+	cp st2/deploy-stage2-rebuild.sh st2/rootfs/run.sh
+	sudo mount -t proc none st2/rootfs/proc
+	sudo mount --rbind /dev st2/rootfs/sys
+	sudo mount --make-rslave st2/rootfs/sys
+	sudo mount --rbind /dev st2/rootfs/dev
+	sudo mount --make-rslave st2/rootfs/dev
+	sudo rm -rfv st2/rootfs/build/initshim
+	sudo cp -rv $2 st2/rootfs/build/initshim	
+	sudo chroot st2/rootfs /run.sh rebuild > log.txt
+	exit 1
+fi
+
 if ! test -f $1; then
     echo "The input file must be a valid Android recovery image."
     exit 1
@@ -46,6 +60,7 @@ if [ -z "$2" ]
 then
     sudo git clone --depth 1 https://github.com/BotchedRPR/initshim st2/rootfs/build/initshim
 else
+
     sudo cp -rv $2 st2/rootfs/build/initshim
 fi
 
